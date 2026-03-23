@@ -12,6 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { TransactionCard } from "@/components/transaction-card"
 import { ArrowUpCircle, PlusCircle, ChevronDown } from "lucide-react"
 
 /**
@@ -40,38 +41,29 @@ const RECENT_TRANSACTIONS = [
 
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col gap-8 p-6">
+    <div className="flex flex-1 flex-col gap-6 p-6">
       {/* Total balance + actions */}
       <section className="space-y-4">
         <h2 className="text-sm font-medium text-muted-foreground">Total balance</h2>
-        <p className="text-3xl font-bold tracking-tight">1.00 EUR</p>
+        <p className="text-3xl font-bold tracking-tight">98.00 EUR</p>
         <div className="flex flex-wrap gap-2">
-          <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
+          <Button size="sm" variant="default">
             Send
           </Button>
-          <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
+          <Button size="sm" variant="secondary">
             Add money
           </Button>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button size="sm" variant="outline" className="gap-1">
-                Request
-                <ChevronDown className="size-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              <DropdownMenuItem>Request from bank account</DropdownMenuItem>
-              <DropdownMenuItem>Request from card</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Button size="sm" variant="secondary">
+            Request
+          </Button>
         </div>
       </section>
 
       {/* Currency account cards */}
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {CURRENCY_ACCOUNTS.map((account) => (
-          <Card key={account.code} className="bg-muted/50">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <Card key={account.code} className="bg-muted/100">
+            <CardHeader className="flex flex-row items-center justify-between space-y-2 pb-2">
               <span className="text-lg" aria-hidden>{account.flag}</span>
               <CardTitle className="text-base font-medium">{account.label}</CardTitle>
             </CardHeader>
@@ -84,32 +76,27 @@ export default function Home() {
       </section>
 
       {/* Recent transactions */}
-      <section className="space-y-4">
+      <section className="space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Transactions</h2>
           <Link
             href="/"
-            className="text-sm font-medium text-primary underline-offset-4 hover:underline"
+            className="text-sm font-medium text-foreground underline-offset-4 hover:underline"
           >
             See all
           </Link>
         </div>
-        <ul className="divide-y divide-border rounded-lg border bg-card">
+        <ul className="space-y-2">
           {RECENT_TRANSACTIONS.map((tx) => (
-            <li key={tx.id} className="flex items-center gap-4 px-4 py-3">
-              <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-muted">
-                <tx.icon className="size-5 text-muted-foreground" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="font-medium">{tx.name}</p>
-                <p className="text-sm text-muted-foreground">{tx.subtitle}</p>
-                {tx.subAmount && (
-                  <p className="text-xs text-muted-foreground">{tx.subAmount}</p>
-                )}
-              </div>
-              <p className={`shrink-0 text-right font-medium ${tx.isCredit ? "text-primary" : ""}`}>
-                {tx.amount}
-              </p>
+            <li key={tx.id}>
+              <TransactionCard
+                icon={tx.icon}
+                name={tx.name}
+                subtitle={tx.subtitle}
+                amount={tx.amount}
+                subAmount={tx.subAmount}
+                isCredit={tx.isCredit}
+              />
             </li>
           ))}
         </ul>
