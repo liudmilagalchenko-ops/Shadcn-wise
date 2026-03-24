@@ -34,9 +34,9 @@ const CURRENCY_ACCOUNTS = [
 ]
 
 const RECENT_TRANSACTIONS = [
-  { id: "1", icon: ArrowUpCircle, name: "Hannah Johnson", subtitle: "Sent - 18 Apr", amount: "49 EUR", isCredit: false },
-  { id: "2", icon: PlusCircle, name: "To EUR", subtitle: "Added - 18 Apr", amount: "+ 50 EUR", subAmount: "50.44 EUR", isCredit: true },
-  { id: "3", icon: ArrowUpCircle, name: "Brandon Bolt", subtitle: "Sent - 2 Apr", amount: "110 EUR", isCredit: false },
+  { id: "1", icon: ArrowUpCircle, name: "Hannah Johnson", subtitle: "Sent ・ 18 Apr", amount: "49 EUR", isCredit: false },
+  { id: "2", icon: PlusCircle, name: "To EUR", subtitle: "Added ・ 18 Apr", amount: "+ 50 EUR", subAmount: "50.44 EUR", isCredit: true },
+  { id: "3", icon: ArrowUpCircle, name: "Brandon Bolt", subtitle: "Sent ・ 2 Apr", amount: "110 EUR", isCredit: false },
 ]
 
 export default function Home() {

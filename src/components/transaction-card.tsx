@@ -23,10 +23,11 @@ function TransactionCard({
   className,
 }: TransactionCardProps) {
   return (
-    <Card className={cn("gap-0 rounded-md py-0 transition-colors hover:bg-[#ECEDE8]", className)}>
+    <Card className={cn("group gap-0 rounded-md py-0 transition-colors duration-500 ease-out hover:bg-muted", className)}>
       <CardContent className="flex items-center gap-4 px-4 py-3">
-        <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-muted">
-          <Icon className="size-5 text-muted-foreground" />
+        <div className="relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted">
+          <div className="pointer-events-none absolute inset-0 rounded-full bg-black/10 opacity-0 transition-opacity group-hover:opacity-100" />
+          <Icon className="relative z-10 size-5 text-muted-foreground" />
         </div>
         <div className="min-w-0 flex-1">
           <p className="font-medium">{name}</p>
@@ -35,7 +36,7 @@ function TransactionCard({
             <p className="text-xs text-muted-foreground">{subAmount}</p>
           )}
         </div>
-        <p className={cn("shrink-0 text-right font-medium", isCredit && "text-primary")}>
+        <p className={cn("shrink-0 text-right font-medium", isCredit && "text-primary-foreground")}>
           {amount}
         </p>
       </CardContent>
